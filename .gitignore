@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Virtual Environment
+venv/
+
+# Environment Variables
+.env
+
+# Django
+media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# Migrations
+# Uncomment ONLY if you do not want migrations tracked
+# */migrations/
+# !*/migrations/__init__.py
+
+# OS
+.DS_Store
+Thumbs.db
