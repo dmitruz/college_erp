@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account',
+    'accounts',
 
      # Third-party
     'rest_framework',
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django_extensions',
 
     # Local apps
-    'accounts',
     'students',
     'faculty',
     'courses',
