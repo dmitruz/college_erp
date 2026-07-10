@@ -1,15 +1,10 @@
 from django.db import models
 from faculty.models import Faculty
+from departments.models import Department
 
 
 class Course(models.Model):
 
-    DEPARTMENT_CHOICES = (
-        ('CS', 'Computer Science'),
-        ('MC', 'Mechanical'),
-        ('EE', 'Electrical'),
-        ('CE', 'Civil'),
-    )
 
     SEMESTER_CHOICES = (
         (1, 'Semester 1'),
@@ -32,8 +27,9 @@ class Course(models.Model):
     )
 
     department = models.CharField(
-        max_length=2,
-        choices=DEPARTMENT_CHOICES
+        Department,
+    on_delete=models.PROTECT,
+    related_name="courses"
     )
 
     semester = models.PositiveSmallIntegerField(
