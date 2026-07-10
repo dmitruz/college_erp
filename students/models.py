@@ -15,7 +15,7 @@ class Student(models.Model):
         on_delete=models.CASCADE
     )
 
-    student_id = models.CharField(
+    student_id = models.ForeignKey(
          Department,
         on_delete=models.PROTECT,
         related_name="students"

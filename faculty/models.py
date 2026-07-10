@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from departments.models import Department
 
 
 class Faculty(models.Model):
@@ -16,14 +17,11 @@ class Faculty(models.Model):
         on_delete=models.CASCADE
     )
 
-    faculty_id = models.CharField(
-        max_length=20,
-        unique=True
-    )
 
-    department = models.CharField(
-        max_length=10,
-        choices=DEPARTMENT_CHOICES
+    department = models.ForeignKey(
+        Department,
+    on_delete=models.PROTECT,
+    related_name="faculty_members"
     )
 
     designation = models.CharField(
