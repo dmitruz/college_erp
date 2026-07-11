@@ -11,11 +11,11 @@ class Faculty(models.Model):
     )
 
 
-    department = models.ForeignKey(
-        Department,
-        on_delete=models.PROTECT,
-        related_name="faculty_members"
-    )
+department = models.ForeignKey(
+    Department,
+    on_delete=models.PROTECT,
+    related_name="faculty_members"
+)
 
     designation = models.CharField(
         max_length=100
@@ -25,6 +25,11 @@ class Faculty(models.Model):
         max_digits=10,
         decimal_places=2
     )
+    
+    faculty_id = models.CharField(
+    max_length=20,
+    unique=True
+)
 
     joining_date = models.DateField()
 
