@@ -5,13 +5,6 @@ from departments.models import Department
 
 class Faculty(models.Model):
 
-    DEPARTMENT_CHOICES = (
-        ('CS', 'Computer Science'),
-        ('MC', 'Mechanical'),
-        ('EE', 'Electrical'),
-        ('CE', 'Civil'),
-    )
-
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
@@ -20,8 +13,8 @@ class Faculty(models.Model):
 
     department = models.ForeignKey(
         Department,
-    on_delete=models.PROTECT,
-    related_name="faculty_members"
+        on_delete=models.PROTECT,
+        related_name="faculty_members"
     )
 
     designation = models.CharField(
