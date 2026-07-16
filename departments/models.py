@@ -1,5 +1,4 @@
 from django.db import models
-from departments.models import Department
 
 
 class Department(models.Model):
@@ -9,9 +8,8 @@ class Department(models.Model):
     )
 
     name = models.CharField(
-          Department,
-        on_delete=models.PROTECT,
-        related_name="faculty_members"
+        max_length=100,
+        unique=True
     )
 
     description = models.TextField(
