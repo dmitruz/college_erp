@@ -1,66 +1,57 @@
 from django.db import models
-from faculty.models import Faculty
+from django.conf import settings
 from departments.models import Department
 
 
-class Course(models.Model):
+class Student(models.Model):
 
-
-    SEMESTER_CHOICES = (
-        (1, 'Semester 1'),
-        (2, 'Semester 2'),
-        (3, 'Semester 3'),
-        (4, 'Semester 4'),
-        (5, 'Semester 5'),
-        (6, 'Semester 6'),
-        (7, 'Semester 7'),
-        (8, 'Semester 8'),
+    GENDER_CHOICES = (
+        ('male', 'Male'),
+        ('female', 'Female'),
     )
 
-    course_code = models.CharField(
-        max_length=10,
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+
+    student_id = models.CharField(
+        max_length=20,
         unique=True
     )
 
-    course_name = models.CharField(
-        max_length=100
-    )
-
-    department = models.CharField(
+    department = models.ForeignKey(
         Department,
-    on_delete=models.PROTECT,
-    related_name="courses"
+        on_delete=models.PROTECT,
+        related_name="students"
     )
 
-    semester = models.PositiveSmallIntegerField(
-        choices=SEMESTER_CHOICES
+    date_of_birth = models.DateField()
+
+    gender = models.CharField(
+        max_length=10,
+        choices=GENDER_CHOICES
     )
 
-    credits = models.PositiveSmallIntegerField()
+    phone_number = models.CharField(
+        max_length=15
+    )
 
-    faculty = models.ForeignKey(
-        Faculty,
-        on_delete=models.SET_NULL,
-        null=True,
+    address = models.TextField()
+
+    admission_date = models.DateField()
+
+    profile_picture = models.ImageField(
+        upload_to='students/',
         blank=True,
-        related_name='courses'
+        null=True
     )
 
-    description = models.TextField(
-        blank=True
-    )
+    is_active = models.BooleanField(default=True)
 
-    is_active = models.BooleanField(
-        default=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True)
 
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
-
-    updated_at = models.DateTimeField(
-        auto_now=True
-    )
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.course_code} - {self.course_name}"
+        return f"{self.student_id} - {self.user.get_full_name()}"

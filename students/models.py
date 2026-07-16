@@ -15,11 +15,16 @@ class Student(models.Model):
         on_delete=models.CASCADE
     )
 
-    student_id = models.ForeignKey(
-         Department,
-        on_delete=models.PROTECT,
-        related_name="students"
-    )
+student_id = models.CharField(
+    max_length=20,
+    unique=True
+)
+
+department = models.ForeignKey(
+    Department,
+    on_delete=models.PROTECT,
+    related_name="students"
+)
 
     date_of_birth = models.DateField()
 
