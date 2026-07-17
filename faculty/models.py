@@ -10,12 +10,16 @@ class Faculty(models.Model):
         on_delete=models.CASCADE
     )
 
+    faculty_id = models.CharField(
+        max_length=20,
+        unique=True
+    )
 
-department = models.ForeignKey(
-    Department,
-    on_delete=models.PROTECT,
-    related_name="faculty_members"
-)
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.PROTECT,
+        related_name="faculty_members"
+    )
 
     designation = models.CharField(
         max_length=100
@@ -25,11 +29,6 @@ department = models.ForeignKey(
         max_digits=10,
         decimal_places=2
     )
-    
-    faculty_id = models.CharField(
-    max_length=20,
-    unique=True
-)
 
     joining_date = models.DateField()
 
@@ -40,7 +39,7 @@ department = models.ForeignKey(
     address = models.TextField()
 
     profile_picture = models.ImageField(
-        upload_to='faculty/',
+        upload_to="faculty/",
         blank=True,
         null=True
     )

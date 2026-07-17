@@ -15,16 +15,16 @@ class Student(models.Model):
         on_delete=models.CASCADE
     )
 
-student_id = models.CharField(
-    max_length=20,
-    unique=True
-)
+    student_id = models.CharField(
+        max_length=20,
+        unique=True
+    )
 
-department = models.ForeignKey(
-    Department,
-    on_delete=models.PROTECT,
-    related_name="students"
-)
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.PROTECT,
+        related_name="students"
+    )
 
     date_of_birth = models.DateField()
 
@@ -42,7 +42,7 @@ department = models.ForeignKey(
     admission_date = models.DateField()
 
     profile_picture = models.ImageField(
-        upload_to='students/',
+        upload_to="students/",
         blank=True,
         null=True
     )

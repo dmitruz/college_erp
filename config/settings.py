@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'fees',
     'notifications',
     'departments',
+    'enrollments',
 ]
 
 MIDDLEWARE = [
