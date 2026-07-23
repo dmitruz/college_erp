@@ -2,6 +2,7 @@ from django.db import models
 from departments.models import Department
 from courses.models import Course
 from faculty.models import Faculty
+from classrooms.models import Classroom
 
 
 class Timetable(models.Model):
@@ -32,6 +33,7 @@ class Timetable(models.Model):
         (7, "Semester 7"),
         (8, "Semester 8"),
     )
+
 
     department = models.ForeignKey(
         Department,
@@ -76,10 +78,13 @@ class Timetable(models.Model):
 
     end_time = models.TimeField()
 
-    room_number = models.CharField(
-        max_length=20
-    )
-
+    classroom = models.ForeignKey(
+    Classroom,
+    on_delete=models.PROTECT,
+    related_name="timetables",
+    null=True,
+    blank=True
+)
     created_at = models.DateTimeField(auto_now_add=True)
 
     updated_at = models.DateTimeField(auto_now=True)
@@ -95,7 +100,7 @@ class Timetable(models.Model):
                     "department",
                     "day",
                     "start_time",
-                    "room_number",
+                    "classroom",
                 ],
                 name="unique_room_schedule"
             ),

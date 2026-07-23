@@ -15,7 +15,7 @@ class TimetableAdmin(admin.ModelAdmin):
         "day",
         "start_time",
         "end_time",
-        "room_number",
+        "classroom",
     )
 
     list_filter = (
@@ -30,7 +30,7 @@ class TimetableAdmin(admin.ModelAdmin):
         "course__course_name",
         "course__course_code",
         "faculty__faculty_id",
-        "room_number",
+        "classroom__room_number",
     )
 
     ordering = (
