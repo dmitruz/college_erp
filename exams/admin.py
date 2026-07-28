@@ -7,20 +7,23 @@ from .models import Exam
 class ExamAdmin(admin.ModelAdmin):
 
     list_display = (
-        "title",
         "course",
         "exam_type",
         "exam_date",
-        "total_marks",
+        "start_time",
+        "end_time",
+        "semester",
+        "academic_year",
     )
 
     list_filter = (
         "exam_type",
-        "course",
+        "semester",
+        "academic_year",
     )
 
     search_fields = (
-        "title",
+        "course__course_code",
         "course__course_name",
     )
 
