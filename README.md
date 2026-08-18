@@ -227,7 +227,7 @@ After starting the development server, the documentation can be accessed through
 http://127.0.0.1:8000/api/docs/
 ⚙️ Installation
 1. Clone the repository
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/dmitruz/college_erp
 cd college_erp
 2. Create a virtual environment
 python -m venv venv
@@ -330,16 +330,20 @@ Deployment details and the live API URL will be added once the application is de
 
 📸 Screenshots
 Django Admin
-![Django Admin](images/department.png)
+<img width="1365" height="862" alt="department" src="https://github.com/user-attachments/assets/309ea090-8852-4fc4-bc00-3cb3d2c06f54" />
+
 
 API
-![Api](images/api-check-gender.png)
+<img width="1362" height="733" alt="api-check-gender" src="https://github.com/user-attachments/assets/85a12f12-653b-406b-af33-3f058d2a139a" />
+
 
 Filter
-![Filter](images/filterstudent.png)
+<img width="1330" height="765" alt="filterstudent" src="https://github.com/user-attachments/assets/97b07871-3ff8-4bbb-a2e5-9015084065c2" />
+
 
 Active students
-![Is Active](images/is_active.png)
+<img width="1268" height="711" alt="is_active" src="https://github.com/user-attachments/assets/2a103e97-1cb0-407d-8cef-6de51531fbb1" />
+
 
 🗺️ Roadmap
 Completed
