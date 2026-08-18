@@ -329,21 +329,21 @@ Production web server
 Deployment details and the live API URL will be added once the application is deployed.
 
 📸 Screenshots
-Django Admin
-<img width="1365" height="862" alt="department" src="https://github.com/user-attachments/assets/309ea090-8852-4fc4-bc00-3cb3d2c06f54" />
+## Django Admin
 
+![Django Admin](images/department.png)
 
-API
-<img width="1362" height="733" alt="api-check-gender" src="https://github.com/user-attachments/assets/85a12f12-653b-406b-af33-3f058d2a139a" />
+## API
 
+![API](images/api-check-gender.png)
 
-Filter
-<img width="1330" height="765" alt="filterstudent" src="https://github.com/user-attachments/assets/97b07871-3ff8-4bbb-a2e5-9015084065c2" />
+## Filtering
 
+![Student Filtering](images/filterstudent.png)
 
-Active students
-<img width="1268" height="711" alt="is_active" src="https://github.com/user-attachments/assets/2a103e97-1cb0-407d-8cef-6de51531fbb1" />
+## Active Students
 
+![Active Students](images/is_active.png)
 
 🗺️ Roadmap
 Completed
