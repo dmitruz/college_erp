@@ -1,120 +1,124 @@
 # College ERP
 
-> A Django REST API for managing students, faculty, courses, enrollments, attendance, examinations, grades, timetables and fees.
+A Django-based College ERP (Enterprise Resource Planning) system designed to manage academic and administrative operations through a RESTful API.
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue)](https://www.python.org/)
-[![Django](https://img.shields.io/badge/Django-5.x-green)](https://www.djangoproject.com/)
-[![Django REST Framework](https://img.shields.io/badge/DRF-REST%20API-red)](https://www.django-rest-framework.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)](https://www.postgresql.org/)
-[![JWT](https://img.shields.io/badge/Auth-JWT-orange)](https://django-rest-framework-simplejwt.readthedocs.io/)
+The project provides a backend foundation for managing students, faculty, departments, courses, enrollments, attendance, examinations, grades, timetables, classrooms, fees and notifications.
 
 ---
 
 ## 📌 Overview
 
-College ERP is a backend application designed to manage the core academic and administrative operations of a college.
+College ERP is a backend application built with Django and Django REST Framework.
 
-The project is built with **Django**, **Django REST Framework**, and **PostgreSQL**, and exposes a RESTful API that can later be consumed by a React or other frontend application.
+The system is designed around the main entities and workflows of a college, providing a centralized API for managing academic information and administrative processes.
 
-### Main goals
+The project currently focuses on the backend and REST API. A frontend application can be added later and consume the API.
 
-* Manage students and faculty
-* Organize departments and courses
-* Manage student enrollments
-* Track attendance
-* Create academic timetables
-* Manage examinations and grades
-* Manage fees
-* Provide secure REST API access
-* Implement role-based authorization
+### Main objectives
+
+- Centralize college academic data
+- Provide a RESTful API
+- Implement secure authentication
+- Manage students and faculty
+- Manage courses and enrollments
+- Track attendance
+- Manage examinations and grades
+- Manage academic timetables and classrooms
+- Provide administrative functionality through Django Admin
 
 ---
 
 ## ✨ Features
 
-### Authentication & Authorization
+### Authentication
 
-* JWT authentication
-* Access and refresh tokens
-* Custom User model
-* Admin, Faculty and Student roles
-* Django Groups
-* Initial API permission system
+- Custom Django User model
+- JWT authentication
+- Access and refresh tokens
+- User roles:
+  - Admin
+  - Faculty
+  - Student
 
 ### Academic Management
 
-* Departments
-* Students
-* Faculty
-* Courses
-* Enrollments
-* Classrooms
-* Timetable
-* Exams
-* Grades / Results
+- Departments
+- Students
+- Faculty
+- Courses
+- Enrollments
+- Attendance
+- Classrooms
+- Timetable
+- Exams
+- Grades
 
 ### Administration
 
-* Fees management
-* Notifications
-* Django Admin interface
-* PostgreSQL database
+- Fees management
+- Notifications
+- Django Admin interface
+- PostgreSQL database
 
 ### REST API
 
-* CRUD operations
-* Filtering
-* Searching
-* Ordering
-* JWT-protected endpoints
-* API validation
+- CRUD operations through Django REST Framework
+- JWT-protected endpoints
+- Filtering
+- Searching
+- Ordering
+- Serializer validation
+- API documentation with Swagger/OpenAPI
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology            | Purpose              |
-| --------------------- | -------------------- |
-| Python                | Programming language |
-| Django                | Backend framework    |
-| Django REST Framework | REST API             |
-| PostgreSQL            | Database             |
-| Simple JWT            | Authentication       |
-| django-filter         | Filtering            |
-| drf-yasg              | API documentation    |
-| Django Admin          | Administration       |
-| Git / GitHub          | Version control      |
+| Technology | Purpose |
+|---|---|
+| Python | Programming language |
+| Django | Backend framework |
+| Django REST Framework | REST API |
+| PostgreSQL | Database |
+| Simple JWT | JWT authentication |
+| django-filter | API filtering |
+| drf-yasg | Swagger/OpenAPI documentation |
+| django-cors-headers | CORS support |
+| django-extensions | Django development utilities |
+| Pillow | Image handling |
+| python-decouple | Environment configuration |
+| Git / GitHub | Version control |
 
 ---
 
 ## 🏗️ Architecture
 
 ```text
-                    Client
-                      │
-                      ▼
-              Django REST API
-                      │
-          ┌───────────┴───────────┐
-          │                       │
-       JWT Auth              REST Endpoints
-          │                       │
-          └───────────┬───────────┘
-                      │
-                Django Models
-                      │
-                      ▼
-                  PostgreSQL
-```
+                         Client
+                           │
+                           ▼
+                  Django REST API
+                           │
+             ┌─────────────┴─────────────┐
+             │                           │
+        JWT Authentication          API Endpoints
+             │                           │
+             └─────────────┬─────────────┘
+                           │
+                    Django Models
+                           │
+                           ▼
+                       PostgreSQL
 
----
+## Project Structure
 
-## 📂 Project Structure
-
-```text
 college_erp/
 │
 ├── accounts/
+│   ├── models.py
+│   ├── admin.py
+│   └── ...
+│
 ├── students/
 ├── faculty/
 ├── departments/
@@ -124,7 +128,7 @@ college_erp/
 ├── classrooms/
 ├── timetable/
 ├── exams/
-├── results/
+├── grades/
 ├── fees/
 ├── notifications/
 │
@@ -135,125 +139,57 @@ college_erp/
 │
 ├── manage.py
 ├── requirements.txt
-├── .env.example
+├── .env
 ├── .gitignore
 └── README.md
-```
 
----
+## Main Entities
 
-## 🗄️ Data Model
+                    Department
+                   /    |     \
+                  /     |      \
+                 ▼      ▼       ▼
+            Students  Faculty  Courses
+                │                 │
+                │                 │
+                ▼                 ▼
+           Attendance        Enrollments
+                │                 │
+                │                 ▼
+                │               Exams
+                │                 │
+                ▼                 ▼
+              Results / Grades
+                   
+             Timetable
+                 │
+                 ▼
+             Classroom
 
-The main entities are:
+             Students
+                 │
+                 ├── Fees
+                 └── Notifications
 
-```text
-Department
-    │
-    ├── Students
-    ├── Faculty
-    └── Courses
-            │
-            ├── Enrollments
-            ├── Exams
-            └── Timetable
+## REST API
 
-Student
-    ├── Attendance
-    ├── Enrollments
-    ├── Results
-    └── Fees
+The API is organized around the main ERP resources.
 
-Faculty
-    ├── Courses
-    ├── Attendance
-    └── Exams
-```
+Students
+/api/students/
 
----
+Supported operations include:
 
-## 🔐 Authentication
+Method	Endpoint	Description
+GET	/api/students/	List students
+POST	/api/students/	Create student
+GET	/api/students/{id}/	Retrieve student
+PUT	/api/students/{id}/	Update student
+PATCH	/api/students/{id}/	Partially update student
+DELETE	/api/students/{id}/	Delete student
 
-The API uses **JWT authentication**.
+## Other Resources
 
-### Obtain tokens
-
-```http
-POST /api/token/
-```
-
-Request:
-
-```json
-{
-    "username": "your_username",
-    "password": "your_password"
-}
-```
-
-Response:
-
-```json
-{
-    "refresh": "YOUR_REFRESH_TOKEN",
-    "access": "YOUR_ACCESS_TOKEN"
-}
-```
-
-### Authenticate API requests
-
-Include the access token in the request header:
-
-```http
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-### Refresh token
-
-```http
-POST /api/token/refresh/
-```
-
----
-
-## 👥 Roles & Permissions
-
-The application supports three main roles:
-
-| Role    | Description                           |
-| ------- | ------------------------------------- |
-| Admin   | Full system management                |
-| Faculty | Academic management                   |
-| Student | Access to student-related information |
-
-Initial role-based API permissions are implemented using Django Groups and Django REST Framework permissions.
-
-> More granular object-level permissions are planned as a future improvement.
-
----
-
-## 🔌 API Endpoints
-
-### Authentication
-
-| Method | Endpoint              | Description          |
-| ------ | --------------------- | -------------------- |
-| POST   | `/api/token/`         | Obtain JWT tokens    |
-| POST   | `/api/token/refresh/` | Refresh access token |
-
-### Students
-
-| Method | Endpoint              | Description              |
-| ------ | --------------------- | ------------------------ |
-| GET    | `/api/students/`      | List students            |
-| POST   | `/api/students/`      | Create student           |
-| GET    | `/api/students/{id}/` | Get student              |
-| PUT    | `/api/students/{id}/` | Update student           |
-| PATCH  | `/api/students/{id}/` | Partially update student |
-| DELETE | `/api/students/{id}/` | Delete student           |
-
-### Other API modules
-
-```text
 /api/faculty/
 /api/departments/
 /api/courses/
@@ -262,268 +198,204 @@ Initial role-based API permissions are implemented using Django Groups and Djang
 /api/classrooms/
 /api/timetable/
 /api/exams/
-/api/results/
+/api/grades/
 /api/fees/
 /api/notifications/
-```
 
-> Endpoint availability will expand as additional ViewSets and permissions are implemented.
+## Filtering, Searching and Ordering
 
----
-
-## 🔎 Filtering, Searching & Ordering
+The API supports filtering and other query operations through Django REST Framework and django-filter.
 
 Example:
 
-```http
 GET /api/students/?department=1
-```
 
-Search:
+Search example:
 
-```http
 GET /api/students/?search=john
-```
 
-Ordering:
+Ordering example:
 
-```http
 GET /api/students/?ordering=student_id
-```
 
----
-
-## 📖 API Documentation
+API Documentation
 
 Interactive API documentation is provided using Swagger/OpenAPI.
 
-Once enabled, documentation will be available at:
+After starting the development server, the documentation can be accessed through the configured Swagger endpoint.
 
-```text
-/api/docs/
-```
-
----
-
-## ⚙️ Installation
-
-### 1. Clone the repository
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+http://127.0.0.1:8000/api/docs/
+⚙️ Installation
+1. Clone the repository
+git clone YOUR_REPOSITORY_URL
 cd college_erp
-```
-
-### 2. Create a virtual environment
-
-```bash
+2. Create a virtual environment
 python -m venv venv
-```
-
-Activate it on Windows:
-
-```bash
+Windows
 venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
+Linux / macOS
+source venv/bin/activate
+3. Install dependencies
 pip install -r requirements.txt
-```
+4. Configure environment variables
 
-### 4. Configure environment variables
+Create a .env file in the project root.
 
-Create a `.env` file:
+Example:
 
-```env
 SECRET_KEY=your-secret-key
 DEBUG=True
+
 
 DB_NAME=college_erp
 DB_USER=postgres
 DB_PASSWORD=your-password
 DB_HOST=localhost
 DB_PORT=5432
-```
 
-### 5. Run migrations
+Never commit your real .env file or database credentials to GitHub.
 
-```bash
+5. Apply migrations
 python manage.py migrate
-```
-
-### 6. Create an administrator
-
-```bash
+6. Create an administrator
 python manage.py createsuperuser
-```
 
-### 7. Start the development server
+Follow the prompts to create the Django administrator account.
 
-```bash
+7. Run the development server
 python manage.py runserver
-```
 
-The API will be available at:
+The application will be available at:
 
-```text
 http://127.0.0.1:8000/
-```
+🖥️ Django Admin
 
----
+The project includes Django Admin for managing ERP data.
 
-## 🧪 Testing
+http://127.0.0.1:8000/admin/
 
-Run Django system checks:
+The administration interface provides access to the application's main models, including:
 
-```bash
+Users
+Students
+Faculty
+Departments
+Courses
+Enrollments
+Attendance
+Classrooms
+Timetable
+Exams
+Grades
+Fees
+Notifications
+🧪 Testing and Validation
+
+Run Django's system checks:
+
 python manage.py check
-```
 
-Run tests:
+Run the test suite:
 
-```bash
 python manage.py test
-```
 
----
+Check migration status:
 
-## 🖥️ Django Admin
+python manage.py showmigrations
+🚀 Deployment
 
-The Django Admin interface provides management of:
+The application is designed to be deployed as a production Django REST API backed by PostgreSQL.
 
-* Users
-* Students
-* Faculty
-* Departments
-* Courses
-* Enrollments
-* Attendance
-* Timetable
-* Exams
-* Results
-* Fees
-* Notifications
+Planned production architecture:
 
-Admin URL:
+              Frontend / API Client
+                       │
+                       ▼
+                Django REST API
+                       │
+                       ▼
+                   PostgreSQL
 
-```text
-/admin/
-```
+Production configuration will include:
 
----
+Environment variables
+DEBUG=False
+Production database
+Static file handling
+CORS configuration
+Secure secret key configuration
+Production web server
 
-## 🚀 Deployment
+Deployment details and the live API URL will be added once the application is deployed.
 
-The project is designed to be deployed as a production Django REST API with PostgreSQL.
+📸 Screenshots
+Django Admin
+![Django Admin](images/department.png)
 
-### Production architecture
+API
+![Api](images/api-check-gender.png)
 
-```text
-Frontend
-   │
-   ▼
-Django REST API
-   │
-   ▼
-PostgreSQL
-```
+Filter
+![Filter](images/filterstudent.png)
 
-Deployment configuration includes:
+Active students
+![Is Active](images/is_active.png)
 
-* Production environment variables
-* PostgreSQL
-* Static files
-* CORS configuration
-* Production `DEBUG=False`
-* Secure Django settings
-
-> Deployment details and live API URL will be added after the production deployment is completed.
-
----
-
-## 📸 Screenshots
-
-### Django Admin
-
-*Add screenshot here*
-
-### Swagger API
-
-*Add screenshot here*
-
-### JWT Authentication
-
-*Add screenshot here*
-
----
-
-## 🗺️ Roadmap
-
-### Completed
-
-* [x] Django project setup
-* [x] PostgreSQL integration
-* [x] Custom User model
-* [x] Student management
-* [x] Faculty management
-* [x] Departments
-* [x] Courses
-* [x] Enrollments
-* [x] Attendance
-* [x] Classrooms
-* [x] Timetable
-* [x] Exams
-* [x] Results
-* [x] Fees
-* [x] Notifications
-* [x] Django Admin
-* [x] Django REST Framework
-* [x] JWT authentication
-* [x] Filtering/searching/ordering
-* [x] Initial role-based permissions
-
-### Planned
-
-* [ ] Complete role-based permissions
-* [ ] Object-level permissions
-* [ ] Complete API coverage for all models
-* [ ] Automated tests
-* [ ] Swagger/OpenAPI improvements
-* [ ] Production deployment
-* [ ] React frontend
-* [ ] Docker
-* [ ] CI/CD
-
----
-
-## 🔮 Future Improvements
+🗺️ Roadmap
+Completed
+ Django project setup
+ PostgreSQL integration
+ Custom User model
+ Departments
+ Students
+ Faculty
+ Courses
+ Enrollments
+ Attendance
+ Classrooms
+ Timetable
+ Exams
+ Grades
+ Fees
+ Notifications
+ Django Admin
+ Django REST Framework
+ JWT authentication
+ API filtering
+ API searching
+ API ordering
+ Initial role-based permissions
+Planned
+ Complete role-based authorization
+ Object-level permissions
+ Complete API coverage for all ERP resources
+ Automated API tests
+ Improved Swagger documentation
+ Production deployment
+ Docker containerization
+ CI/CD pipeline
+ React frontend
+🔮 Future Improvements
 
 Possible future improvements include:
 
-* React frontend
-* Docker containerization
-* CI/CD pipeline
-* Advanced role-based access control
-* Email notifications
-* File/document management
-* Advanced reporting
-* Automated testing
-* Production monitoring
+React frontend
+Docker and Docker Compose
+CI/CD with GitHub Actions
+Advanced role-based access control
+Object-level permissions
+Email notifications
+File and document management
+Advanced reporting
+Automated testing
+Production monitoring
+📄 License
 
----
+This project is currently developed as a portfolio and educational project.
 
-## 📄 License
+👨‍💻 Author
 
-This project is currently intended as a portfolio and educational project.
+Dmytro Ruzhytskyi
 
----
-
-## 👨‍💻 Author
-
-**Your Name**
-
-GitHub: `https://www.github.com/dmitruz`
-
-LinkedIn: `https://www.linkedin.com/in/dmytro-ruzhytskyi/`
+GitHub: https://www.github.com/dmitruz
+LinkedIn: https://www.linkedin.com/in/dmytro-ruzhytskyi/
