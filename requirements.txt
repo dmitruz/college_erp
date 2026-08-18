@@ -1,4 +1,10 @@
 Django==6.1
 djangorestframework==3.16.1
 djangorestframework_simplejwt==5.5.1
+django-cors-headers==4.7.0
+django-filter==25.2
+drf-yasg==1.21.15
+django-extensions==4.1
 python-decouple==3.8
+psycopg==3.2.9
+Pillow==11.0.0
