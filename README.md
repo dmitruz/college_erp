@@ -332,6 +332,9 @@ Deployment details and the live API URL will be added once the application is de
 ## Django Admin
 
 ![Django Admin](./images/department.png)
+<img width="1365" height="862" alt="departmentt" src="https://github.com/user-attachments/assets/6686a13a-cf84-4b2c-9877-17aa08780e64" />
+
+
 
 ## API
 
