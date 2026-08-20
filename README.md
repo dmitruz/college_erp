@@ -331,19 +331,19 @@ Deployment details and the live API URL will be added once the application is de
 📸 Screenshots
 ## Django Admin
 
-![Django Admin](images/department.png)
+![Django Admin](./images/department.png)
 
 ## API
 
-![API](images/api-check-gender.png)
+![API](./images/api-check-gender.png)
 
 ## Filtering
 
-![Student Filtering](images/filterstudent.png)
+![Student Filtering](./images/filterstudent.png)
 
 ## Active Students
 
-![Active Students](images/is_active.png)
+![Active Students](./images/is_active.png)
 
 🗺️ Roadmap
 Completed
