@@ -327,12 +327,11 @@ Secure secret key configuration
 Production web server
 
 Deployment details and the live API URL will be added once the application is deployed.
-
+```
 📸 Screenshots
 ## Django Admin
-![API](https://raw.githubusercontent.com/dmitruz/college_erp/main/images/api-check-gender.png)
 
-
+![Django Admin](./images/department.png)
 
 ## API
 
